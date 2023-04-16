@@ -21,12 +21,11 @@ class BirthdayService:
         )
 
     def get_birthday(self, username):
-        try:
-            response = self.table.get_item(
-                Key={"Username": username},
-                ProjectionExpression="Birthday",
-            )
-        except self.dynamodb.meta.client.exceptions.ResourceNotFoundException as err:
+        response = self.table.get_item(
+            Key={"Username": username},
+            ProjectionExpression="Birthday",
+        )
+        if "Item" not in response:
             raise BirthdayServiceError("Birthday not found")
         else:
             return datetime.strptime(response["Item"]["Birthday"], "%Y-%m-%d")

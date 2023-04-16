@@ -1,6 +1,8 @@
 from datetime import datetime
 from unittest.mock import MagicMock, patch, sentinel
 
+import pytest
+
 from hello.services import BirthdayService, BirthdayServiceError
 
 
@@ -36,3 +38,11 @@ def test_get_birthday(boto3):
         ProjectionExpression="Birthday",
     )
     assert returned == datetime.strptime(now_txt, "%Y-%m-%d")
+
+
+@patch("hello.services.boto3")
+def test_get_birthday_not_found(boto3):
+    service = BirthdayService()
+    service.table.get_item.return_value = {}
+    with pytest.raises(BirthdayServiceError):
+        service.get_birthday(sentinel.name)
