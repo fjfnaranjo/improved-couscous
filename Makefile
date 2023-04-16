@@ -7,3 +7,7 @@ image:
 .PHONY: deploy
 deploy:
 	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && zappa deploy production'
+
+.PHONY: test
+test:
+	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && pytest'

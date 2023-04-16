@@ -13,6 +13,12 @@ can be issue by simple Make invocations.
 make image
 ```
 
+## Run the tests
+
+```
+make test
+```
+
 ## Deploy the API
 
 ```
