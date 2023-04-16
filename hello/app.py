@@ -3,7 +3,7 @@ from functools import partial
 from bottle import default_app, get, put, run
 
 from hello.services import BirthdayService
-from hello.views import put_request, get_request, index
+from hello.views import get_request, index, put_request
 
 
 def bootstrap_api():

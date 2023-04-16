@@ -28,6 +28,14 @@ black:
 black-check:
 	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && black --check *.py hello'
 
+.PHONY: isort
+isort:
+	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && isort *.py hello'
+
+.PHONY: isort-check
+isort-check:
+	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && isort --check *.py hello'
+
 .PHONY: run
 run:
 	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && python -m hello.app'

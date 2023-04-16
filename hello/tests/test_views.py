@@ -1,8 +1,8 @@
 from datetime import datetime, timedelta
-from unittest.mock import sentinel, patch, MagicMock
+from unittest.mock import MagicMock, patch, sentinel
 
-from hello.views import index, get_request, put_request
 from hello.services import BirthdayServiceError
+from hello.views import get_request, index, put_request
 
 
 class ServiceMock:

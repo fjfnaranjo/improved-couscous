@@ -1,7 +1,7 @@
 from datetime import datetime
 from json import dumps, loads
 
-from bottle import response, request
+from bottle import request, response
 
 from hello.services import BirthdayServiceError
 
