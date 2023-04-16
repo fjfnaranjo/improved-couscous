@@ -8,6 +8,14 @@ image:
 deploy:
 	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && zappa deploy production'
 
+.PHONY: update
+update:
+	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && zappa update production'
+
+.PHONY: undeploy
+undeploy:
+	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && zappa undeploy production'
+
 .PHONY: test
 test:
 	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && pytest'
