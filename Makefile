@@ -11,3 +11,11 @@ deploy:
 .PHONY: test
 test:
 	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && pytest'
+
+.PHONY: black
+black:
+	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && black *.py hello/*.py tests/*.py'
+
+.PHONY: black-check
+black-check:
+	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && black --check *.py hello/*.py tests/*.py'
