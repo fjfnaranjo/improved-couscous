@@ -22,11 +22,11 @@ test:
 
 .PHONY: black
 black:
-	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && black *.py hello/*.py tests/*.py'
+	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && black *.py hello'
 
 .PHONY: black-check
 black-check:
-	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && black --check *.py hello/*.py tests/*.py'
+	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && black --check *.py hello'
 
 .PHONY: run
 run:
