@@ -1,9 +1,12 @@
-from bottle import route, run
+from bottle import default_app, route, run
 
 
 @route("/")
 def index():
     return ""
+
+
+app = default_app()
 
 
 if __name__ == "__main__":

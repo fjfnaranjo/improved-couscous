@@ -1,6 +1,6 @@
 {
     "production": {
-        "app_function": "hello.app",
+        "app_function": "hello.app.app",
         "profile_name": null,
         "project_name": "improved-couscous",
         "runtime": "python3.9",
