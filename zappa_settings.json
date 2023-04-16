@@ -1,0 +1,22 @@
+{
+    "production": {
+        "app_function": "hello.app",
+        "profile_name": null,
+        "project_name": "improved-couscous",
+        "runtime": "python3.9",
+        "s3_bucket": "improved-couscous",
+        "manage_roles": false,
+        "role_name": "improved-couscous-lambda",
+        "regex_excludes": [
+          "^/zappa_package_cleaner\\.py",
+          "^/\\..*",
+          "^/venv.*/.*",
+          "^/local/.*",
+          "^/tests/.*",
+          "^/README\\.md"
+        ],
+        "callbacks": {
+          "zip": "zappa_package_cleaner.main"
+        }
+    }
+}
