@@ -1,0 +1,32 @@
+name: improved-couscous-deploy
+on:
+  release:
+    types: [ published ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+    - name: Install pip dependencies
+      run: |
+        python -m venv venv
+        venv/bin/pip install --upgrade pip
+        venv/bin/pip install -r requirements.txt -r requirements.py39runtime.txt -r requirements.dev.txt
+    - name: Check styles with Black
+      run: venv/bin/black --check *.py hello
+    - name: Check imports with isort
+      run: venv/bin/isort --check *.py hello
+    - name: Test with pytest
+      run: venv/bin/pytest
+    - name: Deploy
+      env:
+        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: |
+        . venv/bin/activate
+        zappa update production
