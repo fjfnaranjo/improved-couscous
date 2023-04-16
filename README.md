@@ -1,11 +1,23 @@
 # improved-couscous
-A simple reference implemetation for a birthday greeter API.
+A simple reference implementation for a birthday greeter API.
 
-## Running the tests
+This project uses a self-contained Python 3 environment inside a Docker image
+to normalize the development environment.
+
+The proper commands to manage this environment and interact with the project
+can be issue by simple Make invocations.
+
+## Create the Docker image
 
 ```
-python3 -m venv venv
-. venv/bin/activate
-pip install -r requirements.dev.txt -r requirements.py39runtime.txt -r requirements.txt
-pytest
+make image
+```
+
+## Deploy the API
+
+```
+export AWS_DEFAULT_REGION="region"
+export AWS_ACCESS_KEY_ID="id"
+export AWS_SECRET_ACCESS_KEY="secret"
+make deploy
 ```
