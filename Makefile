@@ -1,4 +1,4 @@
-DOCKER_CMD=docker run --rm -ti -v "$(shell pwd)":/hello -w /hello -e AWS_DEFAULT_REGION -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY hello
+DOCKER_CMD=docker run --rm -ti -v "$(shell pwd)":/hello -w /hello -e AWS_DEFAULT_REGION -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -p 8080:8080 hello
 
 .PHONY: image
 image:
@@ -19,3 +19,7 @@ black:
 .PHONY: black-check
 black-check:
 	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && black --check *.py hello/*.py tests/*.py'
+
+.PHONY: run
+run:
+	@$(DOCKER_CMD) sh -c '. /venv/bin/activate && python -m hello.app'
